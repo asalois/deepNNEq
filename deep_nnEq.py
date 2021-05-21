@@ -18,7 +18,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]=gpuNum
 
 num_classes = 2
 batch_size = 1024
-epochs = 256
+epochs = 512
 
 
 # Load the data
