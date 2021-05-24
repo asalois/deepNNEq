@@ -94,5 +94,5 @@ for SNR in range(20,31):
     #print(predictions.shape)
     #print(predictions[0:9])
     #print(y_test[0:9])
-    savename = "deep_model_SNR" + SNRs + ".h5"
-    model.save(savename)
+    #savename = "deep_model_SNR" + SNRs + ".h5"
+    #model.save(savename)
