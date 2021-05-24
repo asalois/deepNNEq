@@ -4,6 +4,7 @@ import sys
 import os
 import scipy.io as spio
 import numpy as np
+import pandas as pd
 import math
 import keras
 from keras.models import Sequential
@@ -18,9 +19,9 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 num_classes = 2
 batch_size = 1024
-epochs = 512
+epochs = 1024
 
-for SNR in range(1,40):
+for SNR in range(20,31):
 
     SNRs = str(SNR).zfill(2)
     print(SNRs)
