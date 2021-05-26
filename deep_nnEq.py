@@ -18,10 +18,10 @@ from keras.losses import MeanSquaredError
 os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 num_classes = 2
-batch_size = 1024
-epochs = 1024
+batch_size = 128
+epochs = 512
 
-for SNR in range(20,31):
+for SNR in range(16,31):
 
     SNRs = str(SNR).zfill(2)
     print(SNRs)
@@ -71,14 +71,14 @@ for SNR in range(20,31):
     history = model.fit(x_train, y_train,
                         batch_size=batch_size,
                         epochs=epochs,
-                        verbose=1,
+                        verbose=2,
                         validation_data=(x_valid, y_valid))
 
-    score = model.evaluate(x_train, y_train, verbose=1)
+    score = model.evaluate(x_train, y_train, verbose=2)
     print('Final Training MSE:', score[0])
     print('Final Training RMSE:', score[1])
 
-    score = model.evaluate(x_valid, y_valid, verbose=1)
+    score = model.evaluate(x_valid, y_valid, verbose=2)
     print('Final Validation MSE:', score[0])
     print('Final Validation RMSE:', score[1])
 
@@ -94,5 +94,5 @@ for SNR in range(20,31):
     #print(predictions.shape)
     #print(predictions[0:9])
     #print(y_test[0:9])
-    #savename = "deep_model_SNR" + SNRs + ".h5"
-    #model.save(savename)
+    savename = "deep_model_SNR" + SNRs + ".h5"
+    model.save(savename)
