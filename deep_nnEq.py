@@ -18,10 +18,10 @@ from keras.losses import MeanSquaredError
 os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 num_classes = 2
-batch_size = 128
-epochs = 512
+batch_size = 64
+epochs = 1024
 
-for SNR in range(16,31):
+for SNR in range(1,41):
 
     SNRs = str(SNR).zfill(2)
     print(SNRs)
@@ -87,8 +87,8 @@ for SNR in range(16,31):
     #print('Test RMSE:', score[1])
 
     predictions = model.predict(x_test)
-    csvname = "predictionsSNR" + SNRs + ".csv"
-    prediction = pd.DataFrame(predictions, columns=['I','Q']).to_csv(csvname)
+    matname = "predictionsSNR" + SNRs + ".mat"
+    spio.savemat(matname, {'pred': predictions})
     #weight = model.get_weights()
     #np.savetxt('weight.csv' , weight , fmt='%s', delimiter=',')
     #print(predictions.shape)
