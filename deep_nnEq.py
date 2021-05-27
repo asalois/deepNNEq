@@ -13,13 +13,13 @@ from keras.optimizers import SGD
 from keras.losses import MeanSquaredError
 gpuNum = str(sys.argv[1])
 
-if int(gpuNum) == -1
+if int(gpuNum) == -1:
     os.environ["CUDA_VISIBLE_DEVICES"]="0"
     start = int(gpuNum) + 4
-elif int(gpuNum) == -2
+elif int(gpuNum) == -2:
     os.environ["CUDA_VISIBLE_DEVICES"]="0"
     start = int(gpuNum) + 5
-else
+else:
     os.environ["CUDA_VISIBLE_DEVICES"]=gpuNum
     start = int(gpuNum) + 1
 
