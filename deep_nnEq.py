@@ -4,7 +4,6 @@ import sys
 import os
 import scipy.io as spio
 import numpy as np
-import pandas as pd
 import math
 import keras
 from keras.models import Sequential
@@ -15,10 +14,10 @@ gpuNum = str(sys.argv[1])
 
 if int(gpuNum) == -1:
     os.environ["CUDA_VISIBLE_DEVICES"]="0"
-    start = int(gpuNum) + 4
+    start = int(gpuNum) + 1 + 4
 elif int(gpuNum) == -2:
     os.environ["CUDA_VISIBLE_DEVICES"]="0"
-    start = int(gpuNum) + 5
+    start = int(gpuNum) + 2
 else:
     os.environ["CUDA_VISIBLE_DEVICES"]=gpuNum
     start = int(gpuNum) + 1
@@ -28,7 +27,7 @@ num_classes = 2
 batch_size = 64
 epochs = 1024
 
-for SNR in range(start,41,4):
+for SNR in range(start,41,2):
 
     SNRs = str(SNR).zfill(2)
     print(SNRs)
