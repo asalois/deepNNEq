@@ -11,20 +11,28 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.optimizers import SGD
 from keras.losses import MeanSquaredError
-#SNR = str(sys.argv[1])
-#gpuNum = str(sys.argv[2])
-#print(SNR)
+gpuNum = str(sys.argv[1])
 
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
+if int(gpuNum) = -1
+    os.environ["CUDA_VISIBLE_DEVICES"]="0"
+    start = int(gpuNum) + 4
+elif int(gpuNum) = -2
+    os.environ["CUDA_VISIBLE_DEVICES"]="0"
+    start = int(gpuNum) + 5
+else
+    os.environ["CUDA_VISIBLE_DEVICES"]=gpuNum
+    start = int(gpuNum) + 1
+
 
 num_classes = 2
 batch_size = 64
 epochs = 1024
 
-for SNR in range(1,41):
+for SNR in range(start,41,4):
 
     SNRs = str(SNR).zfill(2)
     print(SNRs)
+
     # Load the data
     matname = "deepSNR" + SNRs + ".mat"
     print(matname)
@@ -89,10 +97,5 @@ for SNR in range(1,41):
     predictions = model.predict(x_test)
     matname = "predictionsSNR" + SNRs + ".mat"
     spio.savemat(matname, {'pred': predictions})
-    #weight = model.get_weights()
-    #np.savetxt('weight.csv' , weight , fmt='%s', delimiter=',')
-    #print(predictions.shape)
-    #print(predictions[0:9])
-    #print(y_test[0:9])
     savename = "deep_model_SNR" + SNRs + ".h5"
     model.save(savename)
