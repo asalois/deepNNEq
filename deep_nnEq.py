@@ -14,10 +14,10 @@ gpuNum = str(sys.argv[1])
 
 if int(gpuNum) == -1:
     os.environ["CUDA_VISIBLE_DEVICES"]="0"
-    start = int(gpuNum) + 1 + 4
+    start = 1
 elif int(gpuNum) == -2:
     os.environ["CUDA_VISIBLE_DEVICES"]="0"
-    start = int(gpuNum) + 2
+    start = 2
 else:
     os.environ["CUDA_VISIBLE_DEVICES"]=gpuNum
     start = int(gpuNum) + 1
