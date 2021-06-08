@@ -67,7 +67,7 @@ for SNR in range(25,30):
     model = Sequential()
     model.add(Dense(50, activation='tanh', input_dim=18))
     model.add(Dense(50, activation='tanh'))
-    model.add(Dense(num_classes, activation='sigmoid'))
+    model.add(Dense(num_classes, activation='linear'))
 
     model.summary()
 
