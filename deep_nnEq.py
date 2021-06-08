@@ -25,9 +25,9 @@ else:
 
 num_classes = 2
 batch_size = 64
-epochs = 1024
+epochs = 100
 
-for SNR in range(start,41,2):
+for SNR in range(25,30):
 
     SNRs = str(SNR).zfill(2)
     print(SNRs)
@@ -67,7 +67,7 @@ for SNR in range(start,41,2):
     model = Sequential()
     model.add(Dense(50, activation='tanh', input_dim=18))
     model.add(Dense(50, activation='tanh'))
-    model.add(Dense(num_classes, activation='tanh'))
+    model.add(Dense(num_classes, activation='sigmoid'))
 
     model.summary()
 
@@ -79,6 +79,7 @@ for SNR in range(start,41,2):
                         batch_size=batch_size,
                         epochs=epochs,
                         verbose=2,
+                        shuffle=True,
                         validation_data=(x_valid, y_valid))
 
     score = model.evaluate(x_train, y_train, verbose=2)
