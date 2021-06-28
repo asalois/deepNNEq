@@ -7,5 +7,5 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /code/ 
 
-CMD ["sh","run_deep.sh","37"]
+CMD ["bash","run_deep.sh","37"]
 
