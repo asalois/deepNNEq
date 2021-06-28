@@ -1,10 +1,10 @@
 FROM tensorflow/tensorflow:latest-gpu
 
-ADD deep_nnEq.py deepSNR25.mat /
-
 RUN apt-get update && apt-get install -y \
     python3-pip \
     vim && \
-    pip3 install numpy scipy pandas
+    pip3 install scipy
 
-CMD [ "python", "deep_nnEq.py"]
+WORKDIR /code/
+
+CMD ["bin/bash/", "run_deep.sh","39"]

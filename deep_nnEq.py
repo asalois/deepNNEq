@@ -16,7 +16,7 @@ SNR = str(sys.argv[1])
 
 num_classes = 2
 batch_size = 64
-epochs = 100
+epochs = 1024
 
 SNRs = str(SNR).zfill(2)
 print(SNRs)
