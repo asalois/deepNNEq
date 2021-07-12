@@ -5,6 +5,7 @@ import os
 import scipy.io as spio
 import math
 import time
+import boto3
 from tensorflow import keras
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
@@ -16,7 +17,7 @@ SNR = str(sys.argv[1])
 
 num_classes = 2
 batch_size = 64
-epochs = 1024
+epochs = 1
 
 SNRs = str(SNR).zfill(2)
 print(SNRs)
@@ -24,6 +25,11 @@ print(SNRs)
 # Load the data
 matname = "deepSNR" + SNRs + ".mat"
 print(matname)
+
+bucket = 'SNR-bucket'
+client = boto3.client('s3', endpoint_url='https://s3-west.nrp-nautilus.io', aws_access_key_id='85XP432YCOLKKVRXBIZN', aws_secret_access_key='jWYNmVt54dueMoOjIy8EtByaxEzCjUF5txDM8CLC')
+client.download_file(bucket, matname,matname)
+
 mat = spio.loadmat(matname, squeeze_me=True)
 x_train = mat['x']
 x_valid = mat['x_val']
@@ -87,5 +93,8 @@ matname = "predictionsSNR" + SNRs + ".mat"
 spio.savemat(matname, {'pred': predictions})
 savename = "deep_model_SNR" + SNRs + ".h5"
 model.save(savename)
+
+client.upload_file(savename,bucket,savename)
+client.upload_file(matname,bucket,matname)
 
 print("--- %.2f seconds ---" % (time.time() - start_time))
