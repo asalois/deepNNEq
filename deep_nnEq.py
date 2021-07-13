@@ -78,10 +78,6 @@ score = model.evaluate(x_valid, y_valid, verbose=2)
 print('Final Validation MSE:', score[0])
 print('Final Validation RMSE:', score[1])
 
-#score = model.evaluate(x_test, y_test, verbose=1)
-#print('Test MSE:', score[0])
-#print('Test RMSE:', score[1])
-
 predictions = model.predict(x_test)
 matname = "predictionsSNR" + SNRs + ".mat"
 spio.savemat(matname, {'pred': predictions})
