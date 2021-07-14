@@ -17,8 +17,8 @@ SNRs = str(SNR).zfill(2)
 print(SNRs)
 
 num_classes = 2
-batch_size = 256
-epochs = 2
+batch_size = 64
+epochs = 30
 
 savename = "deep_model_SNR" + SNRs
 model = keras.models.load_model(savename)
